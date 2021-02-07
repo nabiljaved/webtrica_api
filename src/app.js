@@ -1,0 +1,46 @@
+const express = require('express');
+const authRoutes = require('../routes/authRoutes');
+const carLiftRoutes = require('../routes/carLiftRoutes');
+const cookieParser = require('cookie-parser');
+const { checkUser } = require('../middleware/authMiddleware');
+const dotenv = require('dotenv');
+const connectDB = require('../config/db.js');
+const app = express();
+var path = require('path');
+
+dotenv.config()
+
+//connect to mongodb
+connectDB()
+
+// middleware
+app.use(express.static('public'));
+app.use(express.json());
+app.use(cookieParser());
+
+
+const viewPath = path.join(__dirname, '../views');
+const publicDirectoryPath = path.join(__dirname, '../public')
+const assets = path.join(__dirname, '../public/assets')
+
+// view engine
+app.set('view engine', 'ejs');
+app.set(viewPath);
+app.use(express.static(publicDirectoryPath));
+app.use(express.static(assets));
+
+// routes
+app.get('*', checkUser)
+app.use(authRoutes)
+app.use('/admin-dashboard',carLiftRoutes)
+
+const PORT = process.env.PORT || 5000
+
+app.listen(
+  PORT,
+  console.log(
+    `Server running on port ${PORT}`
+  )
+)
+
+
