@@ -30,10 +30,10 @@ const redirectRoutes = (req, res, next) => {
     jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
       if (err) {
         console.log(err.message);
-        res.redirect('/home');
+        res.redirect('/login');
       } else {
         //console.log(decodedToken);
-        res.redirect('/dashboard');
+        res.redirect('/admin-dashboard');
       }
     });
   } else {
