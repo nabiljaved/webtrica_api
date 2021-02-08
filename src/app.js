@@ -1,6 +1,7 @@
 const express = require('express');
 const authRoutes = require('../routes/authRoutes');
 const carLiftRoutes = require('../routes/carLiftRoutes');
+const dashBoardRoutes = require('../routes/dashBoardRoutes');
 const cookieParser = require('cookie-parser');
 const { checkUser } = require('../middleware/authMiddleware');
 const dotenv = require('dotenv');
@@ -35,6 +36,7 @@ app.use(express.static(assets));
 //   app.get('*', checkUser)
 // app.use(authRoutes)
 app.use(carLiftRoutes)
+app.use(dashBoardRoutes)
 
 const PORT = process.env.PORT || 5000
 
