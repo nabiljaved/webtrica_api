@@ -32,7 +32,7 @@ app.use(express.static(publicDirectoryPath));
 app.use(express.static(assets));
 
 // routes
-app.get('*', checkUser)
+  app.get('*', checkUser)
 app.use(authRoutes)
 app.use('/admin-dashboard',carLiftRoutes)
 
