@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const authController = require('../controllers/authController');
+const adminController = require('../controllers/adminControllers');
 const { requireAuth, checkUser, protectedRoutes,redirectRoutes } = require('../middleware/authMiddleware');
 const expressLayouts = require("express-ejs-layouts");
 const router = Router();
@@ -17,12 +18,18 @@ router.get('/contacts', authController.getContacts);
 router.get('/packages', authController.getPackages);
 router.post('/promotions', authController.addPromotion);
 router.post('/contacts', authController.addContacts);
-router.post('/packages', authController.addPackages);
 
-router.get('/', requireAuth, (req, res) => res.render('promotion-page', { layout: 'dashboard' }));
+
+//all get methods
+router.get('/', requireAuth, (req, res) => res.render('statistics', { layout: 'dashboard' }));
 router.get('/add-promotion', requireAuth, (req, res) => res.render('promotion-page', { layout: 'dashboard' }));
 router.get('/add-package', requireAuth, (req, res) => res.render('package-page', { layout: 'dashboard' }));
 router.get('/add-contact', requireAuth, (req, res) => res.render('contact-page', { layout: 'dashboard' }));
-//new routes
+
+
+//post methods
+router.post('/add-package', adminController.addPackages);
+router.post('/add-promotion', adminController.addPromotion);
+router.post('/add-contact', adminController.addContact);
 
 module.exports = router;

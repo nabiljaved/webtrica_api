@@ -7,6 +7,7 @@ const dotenv = require('dotenv');
 const connectDB = require('../config/db.js');
 const app = express();
 var path = require('path');
+var flash = require('connect-flash');
 
 dotenv.config()
 
@@ -17,6 +18,7 @@ connectDB()
 app.use(express.static('public'));
 app.use(express.json());
 app.use(cookieParser());
+app.use(flash());
 
 
 const viewPath = path.join(__dirname, '../views');
