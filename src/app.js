@@ -1,6 +1,6 @@
 const express = require('express');
 const authRoutes = require('../routes/authRoutes');
-const carLiftRoutes = require('../routes/carLiftRoutes');
+const drivingSchoolRoutes = require('../routes/drivingSchoolRoutes');
 const dashBoardRoutes = require('../routes/dashBoardRoutes');
 const cookieParser = require('cookie-parser');
 const { checkUser } = require('../middleware/authMiddleware');
@@ -13,7 +13,7 @@ var flash = require('connect-flash');
 dotenv.config()
 
 // //connect to mongodb
-// connectDB()
+connectDB()
 
 // middleware
 app.use(express.static('public'));
@@ -35,8 +35,10 @@ app.use(express.static(assets));
 // routes
 //   app.get('*', checkUser)
 // app.use(authRoutes)
-app.use(carLiftRoutes)
-app.use(dashBoardRoutes)
+app.use(drivingSchoolRoutes)
+app.use('/admin-dashboard',dashBoardRoutes)
+
+// app.use('/task-manager-api-v1', routerV1);
 
 const PORT = process.env.PORT || 5000
 

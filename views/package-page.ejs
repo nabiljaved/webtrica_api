@@ -86,6 +86,12 @@ form.addEventListener('submit', addPromotion);
          const valid = document.getElementById('package_valid').value;
         const expires = document.getElementById('package_expire').value;
         
+        if(location === '' || package === '' || title === '' || description === '' || price === '' || valid === '' || expires === ''){
+          UI.showAlert('Please fill in all fields', 'danger');
+          return;
+        }
+
+
         var data = {
              "location" : location,
              "package": package,
@@ -96,7 +102,7 @@ form.addEventListener('submit', addPromotion);
              "expires": expires
         }
         
-        console.log([location, package, title, description, price, valid, expires])
+        
 
         fetch('http://localhost:5000/admin-dashboard/add-package', {
         method: 'post',
@@ -110,11 +116,43 @@ form.addEventListener('submit', addPromotion);
        return response.json();
        }).then(function(data) {
             if(data){
-              location.reload() 
+              //location.reload() 
+              //console.log(data)
+              UI.emptyFields();
+              UI.showAlert("Package is added success fully", "success")
             }
       });  
 
     }
 
+    class UI{
 
-        </script>
+
+    static showAlert(message, className) {
+    const div = document.createElement('div');
+    div.className = `alert alert-${className}`;
+    div.appendChild(document.createTextNode(message));
+    const container = document.querySelector('.dashboard_main_wrapper');
+    const form = document.querySelector('#form');
+    container.insertBefore(div, form);
+
+    // Vanish in 3 seconds
+    setTimeout(() => document.querySelector('.alert').remove(), 3000);
+  }
+
+
+static emptyFields()
+{
+        document.getElementById('package_location').value = ''; 
+        document.getElementById('package_selection').value = '';
+        document.getElementById('package_title').value = '';
+        document.getElementById('editor').value = '';
+        document.getElementById('package_price').value = '';
+        document.getElementById('package_valid').value = '';
+        document.getElementById('package_expire').value = '';
+        
+}
+
+}
+
+  </script>

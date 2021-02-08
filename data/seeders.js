@@ -23,9 +23,9 @@ const importData = async () => {
     await User.deleteMany()
 
     //add new data
-    await Promotion.insertMany(promotions)
-    await Contact.insertMany(contacts)
-    await Package.insertMany(packages)
+    //await Promotion.insertMany(promotions)
+    // await Contact.insertMany(contacts)
+    // await Package.insertMany(packages)
     await User.insertMany(users)
     
     console.log('Data Imported!')

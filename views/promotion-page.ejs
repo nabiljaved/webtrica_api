@@ -39,7 +39,45 @@
     
         </div>
 
-        <script>
+<script>
+
+class UI{
+
+
+  static showAlert(message, className) {
+      const div = document.createElement('div');
+      div.className = `alert alert-${className}`;
+      div.appendChild(document.createTextNode(message));
+      const container = document.querySelector('.dashboard_main_wrapper');
+      const form = document.querySelector('#form');
+      container.insertBefore(div, form);
+  
+      // Vanish in 3 seconds
+      setTimeout(() => document.querySelector('.alert').remove(), 3000);
+    }
+
+
+  static emptyFields()
+  {
+    document.getElementById('package_title').value = "";
+    document.getElementById('editor').value = "";
+    document.getElementById('package_expire').value = "";
+    document.getElementById('package_city').value = "";
+  }
+
+}
+
+class Promotion
+{
+  constructor(title, description, expire, city) {
+      this.title = title;
+      this.description = description;
+      this.expire = expire;
+      this.city = city; 
+    }
+}
+
+
 
 
 var form = document.querySelector('#form');
@@ -50,29 +88,17 @@ form.addEventListener('submit', addPromotion);
      
         
         const title = document.getElementById('package_title').value;
-         const description = document.getElementById('editor').value;
+        const description = document.getElementById('editor').value;
         const expire = document.getElementById('package_expire').value;
-         const city = document.getElementById('package_city').value;
+        const city = document.getElementById('package_city').value;
       
-        
-        var data = {
-            
-             "title": title,
-             "description" : description,
-             "expire": expire,
-             "city": city
-        }
+        if(title === '' || description === '' || expire === '' || city === '')
+        {
+          UI.showAlert('Please fill in all fields', 'danger');
+          return;
+        }else{
 
-        function emptyFields(){
-            
-            title.textContent = "";
-                description.textContent = "";
-                expire.textContent = "";
-                city.textContent = "";
-        }
-        
-        console.log([title, description,expire,city])
-
+          const data = new Promotion(title, description, expire, city);
         fetch('http://localhost:5000/admin-dashboard/add-promotion', {
         method: 'post',
         body: JSON.stringify(data),
@@ -85,12 +111,16 @@ form.addEventListener('submit', addPromotion);
        return response.json();
        }).then(function(data) {
             if(data){
-                // console.log(data)  
-                location.reload() 
+                //console.log(data)  
+                //location.reload() 
+                UI.emptyFields()
+                UI.showAlert('Promotion is added successfully', 'success');
+
             }
       });  
 
     }
+  }
 
-
-        </script>
+        
+</script>

@@ -27,18 +27,6 @@ router.get('/package', (req, res) => res.render('package'));
 router.get('/job-opportunity', (req, res) => res.render('job-opportunity'));
 router.get('/make-payment', (req, res) => res.render('make-payment'));
 router.get('/contact-us', (req, res) => res.render('contact-us'));
-router.get('/admin-dashboard', (req, res) => res.render('dashboard'));
 
-
-
-
-router.get('/add-promotion', requireAuth, (req, res) => res.render('promotion-page', { layout: 'dashboard' }));
-router.get('/add-package', requireAuth, (req, res) => res.render('package-page', { layout: 'dashboard' }));
-router.get('/add-contact', requireAuth, (req, res) => res.render('contact-page', { layout: 'dashboard' }));
-
-//post methods contact-us
-router.post('/add-package', adminController.addPackages);
-router.post('/add-promotion', adminController.addPromotion);
-router.post('/add-contact', adminController.addContact);
 
 module.exports = router;

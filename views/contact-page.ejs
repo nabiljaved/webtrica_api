@@ -49,21 +49,17 @@ form.addEventListener('submit', addPromotion);
         const address = document.getElementById('address').value;
         const phone = document.getElementById('phone').value;
         
-      
+        if(name === '' || address === '' || phone === ''){
+            UI.showAlert("please fill all fields", 'danger')
+            return;
+        }
         
+
         var data = {
             
              "name": name,
              "address" : address,
              "phone": phone,
-        }
-
-        function emptyFields(){
-            
-            title.textContent = "";
-                description.textContent = "";
-                expire.textContent = "";
-                city.textContent = "";
         }
         
         console.log([name, address,phone])
@@ -80,12 +76,39 @@ form.addEventListener('submit', addPromotion);
        return response.json();
        }).then(function(data) {
             if(data){
-                // console.log(data)  
-                location.reload() 
+                //console.log(data)  
+                //location.reload() 
+                UI.showAlert("contact is addedd success fully", 'success')
+                UI.emptyFields();
             }
       });  
 
     }
+
+class UI{
+
+static showAlert(message, className) {
+const div = document.createElement('div');
+div.className = `alert alert-${className}`;
+div.appendChild(document.createTextNode(message));
+const container = document.querySelector('.dashboard_main_wrapper');
+const form = document.querySelector('#form');
+container.insertBefore(div, form);
+
+// Vanish in 3 seconds
+setTimeout(() => document.querySelector('.alert').remove(), 3000);
+}
+
+
+static emptyFields()
+{
+  const name = document.getElementById('name').value = '';
+  const address = document.getElementById('address').value = '';
+  const phone = document.getElementById('phone').value = '';
+        
+}
+
+}
 
 
         </script>
