@@ -4,9 +4,9 @@ const adminController = require('../controllers/adminControllers');
 const { requireAuth, checkUser, protectedRoutes,redirectRoutes } = require('../middleware/authMiddleware');
 const expressLayouts = require("express-ejs-layouts");
 const router = Router();
-var path = require('path');
+
 // post router
-router.use(expressLayouts)
+
 
 
 
@@ -20,14 +20,23 @@ router.post('/promotions', authController.addPromotion);
 router.post('/contacts', authController.addContacts);
 
 
-//all get methods
-router.get('/', requireAuth, (req, res) => res.render('statistics', { layout: 'dashboard' }));
+//Routes Canadian Digital driving School
+router.get('/', (req, res) => res.render('index'));
+router.get('/home', (req, res) => res.render('home'));
+router.get('/package', (req, res) => res.render('package'));
+router.get('/job-opportunity', (req, res) => res.render('job-opportunity'));
+router.get('/make-payment', (req, res) => res.render('make-payment'));
+router.get('/contact-us', (req, res) => res.render('contact-us'));
+router.get('/admin-dashboard', (req, res) => res.render('dashboard'));
+
+
+
+
 router.get('/add-promotion', requireAuth, (req, res) => res.render('promotion-page', { layout: 'dashboard' }));
 router.get('/add-package', requireAuth, (req, res) => res.render('package-page', { layout: 'dashboard' }));
 router.get('/add-contact', requireAuth, (req, res) => res.render('contact-page', { layout: 'dashboard' }));
 
-
-//post methods
+//post methods contact-us
 router.post('/add-package', adminController.addPackages);
 router.post('/add-promotion', adminController.addPromotion);
 router.post('/add-contact', adminController.addContact);

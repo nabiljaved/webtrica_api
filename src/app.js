@@ -11,8 +11,8 @@ var flash = require('connect-flash');
 
 dotenv.config()
 
-//connect to mongodb
-connectDB()
+// //connect to mongodb
+// connectDB()
 
 // middleware
 app.use(express.static('public'));
@@ -32,9 +32,9 @@ app.use(express.static(publicDirectoryPath));
 app.use(express.static(assets));
 
 // routes
-  app.get('*', checkUser)
-app.use(authRoutes)
-app.use('/admin-dashboard',carLiftRoutes)
+//   app.get('*', checkUser)
+// app.use(authRoutes)
+app.use(carLiftRoutes)
 
 const PORT = process.env.PORT || 5000
 
