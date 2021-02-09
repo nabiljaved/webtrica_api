@@ -66,52 +66,13 @@ Gain eligibility for insurance discount</p></div>
     <div class="">
       <div class="row">
         <div class="col-12">
-          <nav class="navbar navbar-expand-md navbar-light">
-          
-            <a class="navbar-brand" href="/">
-              <img src="img/logo.png" class="img-fluid">
-            </a>  
-            
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ml-5 py-4 py-md-0">
-                <li class="nav-item1 pl-4 pl-md-0 ml-0 ml-md-4 active">
-                  <a href="/home" class="nav-link1">Home</a>
-                </li>
-                  <li class="nav-item1 pl-4 pl-md-0 ml-0 ml-md-4">
-                  <a href="/package" class="nav-link1">Packages</a>
-                </li>
-              <li class="nav-item1 pl-4 pl-md-0 ml-0 ml-md-4">
-                <a href="#" class="nav-link1">Road Test Booking</a>
-              </li>
-    <li class="nav-item1 pl-4 pl-md-0 ml-0 ml-md-4">
-                <a href="/job-opportunity" class="nav-link1">Job Opportunity</a>
-              </li>
+            <!--header -->
+             <!--header -->
+              <!--header -->
 
-                <li class="nav-item1 pl-4 pl-md-0 ml-0 ml-md-4">
-                  <a href="/make-payment" class="nav-link1" href="#">Make Payment</a>
-                </li>
-
-                  <li class="nav-item1 pl-4 pl-md-0 ml-0 ml-md-4">
-                  <a href="#" class="nav-link1" href="#">Online Course</a>
-                </li>
-              
-               
-
-                 <li class="nav-item1 pl-4 pl-md-0 ml-0 ml-md-4">
-                  <a href="/contact-us" class="nav-link1" href="#">Contacts</a>
-                </li>
-
-               
+              <%- include('partials/canadaDrivingHeader'); -%>
 
 
-              </ul>
-            </div>
-            
-          </nav>    
         </div>
       </div>
     </div>
@@ -468,76 +429,9 @@ Nervous drivers training</p>
   </section>
 
 
-
-<footer class="section-top-1 ">
-
-  <div class="container">
-    <div class="row">
-    <div class="col-sm-3">
-      <img src="img/logo.png" class="img-fluid">
-    </div>
-    <div class="col-sm-3 ">
-     <p class="footer-text-1"> Helpful Links</p>
-     <p class="footer-text-2">
-Our Services</p>
-     <p class="footer-text-2">
-     Registration Form</p>
-     <p class="footer-text-2">
-
-FAQs</p>
-     <p class="footer-text-2">
-Make Payment</p>
-     <p class="footer-text-2">
-       
-       <select class="make-payment-select-2" name="forma1" id="show_locations">
-             
-      </select>
-    
-    </p>
-
-    </div>
-    <div class="col-sm-3">
-<p class="footer-text-1"> Helpful Links</p>
-     <p class="footer-text-2">
-                  <a href="about.html" class="nav-link1" href="about.html">About Us</a>
-</p>
-     <p class="footer-text-2">
-     Registration Form</p>
-     <p class="footer-text-2">
-                  <a href="video.html" class="nav-link1" href="#">Videos</a>
-             
-</p>
-     <p class="footer-text-2">
-                  <a href="faq.html" class="nav-link1" href="#">FAQ</a>
-</p>
-     <p class="footer-text-2">
-      Packages
-</p>
-    </div>
-    <div class="col-sm-3">
-      <div class="row">
-                    <span class="footericon1 footer-text-1 mb-3 pl-3">Connected Us</span>
-
-                    <div class="col-sm-12">
-                        <!-- Add font awesome icons -->
-                        <a href="#" class="fa footericon fa-facebook"></a>
-                        <a href="#" class="fa footericon fa-twitter"></a>
-                        <a href="#" class="fa footericon fa-google"></a>
-                        <a href="#" class="fa footericon fa-linkedin"></a>
-
-                    </div>
-
-
-
-
-<img src="img/mto-approved.jpg" class="mt-4">
-                </div>
-
-    </div>
-  </div>
-  </div>
-
-</footer>
+    <!---Foooter here -->
+    <!---Foooter here -->
+    <%- include('partials/canadaDrivingFooter'); -%>
 
 <!-- 
     <div id="myModal" class="modal fade  " role="dialog" aria-modal="true">
@@ -598,64 +492,6 @@ $('.modal').modal('show');
 
 </script>
  -->
-
-
- <script>
-
-  
-  class UI{
-  
-    static getLocations = async () => {
-
-    //let locations = ['Missisaga', 'brampton', 'calgery', 'Toronto', 'Otawa'];
-
-    let locations = [];
-
-     try {
-       
-      const res = await fetch('/driving-school-location', { 
-        method: 'GET', 
-      });
-      const data = await res.json();
-      locations = data;
-       
-      if (data.errors) {
-     
-      }
-      if (data) {
-        // location.assign('/admin-dashboard');
-        const containers = document.querySelectorAll('#show_locations')
-        console.log(containers)
-
-        containers.forEach(container => {
-
-             //console.log(locations)
-        locations.map(location => {
-
-        container.innerHTML += `
-        <option>${location.location}</option>
-        `
-    })
-
-})
-
-
-      }
-
-
-     } catch (error) {
-       
-     }
-    
-}
-  
-  }
-
-   // Event: Display Locations
-   document.addEventListener('DOMContentLoaded', UI.getLocations);
-   document.addEventListener('click',UI.chooseLocation);
-   
-  </script>
 
 
 </body>

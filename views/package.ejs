@@ -41,38 +41,26 @@ Gain eligibility for insurance discount</p></div>
 
 <div class="col">
 <span class="top-nav-1-text-1">Select Location</span>
-   <select class="make-payment-select-2" name="forma1" >
+   <select class="make-payment-select-2" name="forma1" id="location">
 
 <option>
-Brampton Central</option>
+Calgery Canada
+</option>
+
 <option>
-Brampton North East</option>
+Brampton Canada
+</option>
+
 <option>
-Brampton North West</option>
+Mississauga Dixie
+</option>
+
 <option>
-Burlington North</option>
-<option>
-Burlington South</option>
-<option>
-Milton</option>
-<option>
-Mississauga Dixie</option>
-<option>
-Mississauga Streetsville</option>
-<option>
-Oakville Downtown</option>
-<option>
-Oakville Glen Abbey</option>
-<option>
-Toronto Central / Downtown</option>
-<option>
-Toronto Etobicoke</option>
-<option>
-Toronto North York</option>
-<option>
-Toronto Scarborough</option>
-                   
-                   </select>
+Toronto North York
+</option>
+
+</select>
+
 </div>
 <div class="col">
   <a href="#" class="top-nav-1-text-1">Login</a>
@@ -292,8 +280,10 @@ class UI{
     
     try {
                      
-                     const res = await fetch('/driving-school-packages', { 
-                       method: 'GET', 
+                     const res = await fetch('/driving-school-getPackageByCityName', { 
+                       method: 'POST', 
+                       body: JSON.stringify({location: city}),
+                       headers: {'Content-Type': 'application/json'}
                      });
                      const data = await res.json();
                      console.log(data)
@@ -318,7 +308,7 @@ class UI{
                         <li>${packg.options[0].valid}</li>
                         <li>${packg.options[0].expires}</li>
                         <li>${packg.options[0].description}</li>
-                        <li>-</li>
+                        <li>${packg.location}</li>
                         <li>-</li>
                         </ul>
                     <button type="button" class="btn package-btn-1">Join Now</button>
@@ -326,8 +316,7 @@ class UI{
             </div>
           </div>
 
-                            
-                            
+                        
                             `                      
                          })
                      }
@@ -343,6 +332,16 @@ class UI{
 
  // Event: Display Locations
  document.addEventListener('DOMContentLoaded', UI.getPackage);
+ const select = document.getElementById('location');
+ select.addEventListener('click', setValues)
+
+ function setValues(e){
+  localStorage.removeItem('drivinglocationcanada');
+  localStorage.setItem("drivinglocationcanada", e.target.value)
+  setTimeout(() => {
+    location.reload();
+  },2000);
+ }
 
 </script>
 
