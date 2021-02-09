@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const authController = require('../controllers/authController');
 const adminController = require('../controllers/adminControllers');
+const apiController = require('../controllers/apiControllers');
 const { requireAuth, checkUser, protectedRoutes,redirectRoutes } = require('../middleware/authMiddleware');
 const expressLayouts = require("express-ejs-layouts");
 const router = Router();
@@ -20,13 +21,23 @@ router.post('/promotions', authController.addPromotion);
 router.post('/contacts', authController.addContacts);
 
 
-//Routes Canadian Digital driving School
+//Routes Canadian Digital driving School ----- API's
+
+router.get('/driving-school-location', apiController.getLocations);
+router.get('/driving-school-contacts', apiController.getContacts);
+router.get('/driving-school-promotions', apiController.getPromotions);
+router.get('/driving-school-packages', apiController.getPackages);
+
+
+
+
+//Routes Canadian Digital driving School ----- Render
 router.get('/', (req, res) => res.render('index'));
 router.get('/home', (req, res) => res.render('home'));
 router.get('/package', (req, res) => res.render('package'));
 router.get('/job-opportunity', (req, res) => res.render('job-opportunity'));
 router.get('/make-payment', (req, res) => res.render('make-payment'));
 router.get('/contact-us', (req, res) => res.render('contact-us'));
-
+router.post('/driving-school-getPackageByCityName', apiController.getPackagesByCityName);
 
 module.exports = router;

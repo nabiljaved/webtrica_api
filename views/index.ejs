@@ -29,14 +29,9 @@
 
 <div class="container mt-6">
   <div class="row">
-    <div class="col-sm-12 text-center">
-      <p class="location-bg-1-text-2"><a href="/home" class="location-bg-1-text-1">Location 1</a></p>
-      <p class="location-bg-1-text-2"><a href="/home" class="location-bg-1-text-1">Location 2</a></p>
-      <p class="location-bg-1-text-2"><a href="/home" class="location-bg-1-text-1">Location 3</a></p>
-      <p class="location-bg-1-text-2"><a href="/home" class="location-bg-1-text-1">Location 4</a></p>
-      <p class="location-bg-1-text-2"><a href="/home" class="location-bg-1-text-1">Location 5</a></p>
-      <p class="location-bg-1-text-2"><a href="/home" class="location-bg-1-text-1">Location 6</a></p>
-      <p class="location-bg-1-text-2"><a href="/home" class="location-bg-1-text-1">Location 7</a></p>
+    <div class="col-sm-12 text-center" id="location_container">
+
+
 
 
 
@@ -50,6 +45,71 @@
 
 </div>  
 
+
+
+<script>
+
+  class UI{
+
+    static getValues(e){
+        console.log(e.target.textContent)
+        localStorage.setItem("drivinglocationcanada", e.target.textContent);
+    }
+  
+    static getLocations = async () => {
+
+    //let locations = ['Missisaga', 'brampton', 'calgery', 'Toronto', 'Otawa'];
+
+    let locations = [];
+
+     try {
+       
+      const res = await fetch('/driving-school-location', { 
+        method: 'GET', 
+      });
+      const data = await res.json();
+      locations = data;
+       
+      if (data.errors) {
+     
+      }
+      if (data) {
+        // location.assign('/admin-dashboard');
+        const container = document.getElementById('location_container')
+        //console.log(locations)
+        locations.map(location => {
+
+          let sanitize = location.location;
+          sanitize.replace(/[&\/\\#,+()$~%.'":*?<>{})]/g, '')
+
+          container.innerHTML += `
+          <p class="location-bg-1-text-2"><a href="/home" class="location-bg-1-text-1">${location.location}</a></p>
+          `
+
+        })
+
+
+
+      }
+
+
+     } catch (error) {
+       
+     }
+    
+}
+  
+  }
+  
+  
+  
+
+  // Event: Display Locations
+  document.addEventListener('DOMContentLoaded', UI.getLocations);
+  const input = document.getElementById('location_container');
+  input.addEventListener('click', UI.getValues);
+  
+  </script>
 
 
 </body>

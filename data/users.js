@@ -3,19 +3,19 @@ const bcrypt = require('bcryptjs');
 const users = [
 
   {   
-    email: 'webtricapak123@example.com',
+    email: 'admin@canadian.com',
     password: bcrypt.hashSync('123456', 10),
   },
   { 
-    email: 'nabeeljaved2029@gmail.com',
+    email: 'michelle@gmail.com',
     password: bcrypt.hashSync('123456', 10),
   },
   {
-    email: 'asim@gmail.com',
+    email: 'ahmed@gmail.com',
     password: bcrypt.hashSync('123456', 10),
   },
   {
-    email: 'mehwish@gmail.com',
+    email: 'nabeel@gmail.com',
     password: bcrypt.hashSync('123456', 10),
   },
 

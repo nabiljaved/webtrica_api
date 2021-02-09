@@ -19,10 +19,6 @@
     height: 100%;
   }
 
-  #allul li {
-    padding: 5px;
-  }
-
 
 
   </style>
@@ -156,8 +152,102 @@ Toronto Scarborough</option>
     <div class="container mt-5 mb-3">
         <div class="card-deck row text-center" id="card_deck">
 
-        </div>
-   </div>
+
+      <div class="col-sm-3">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="my-0">Regular Packages  </h4>
+                    <br>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title">$129</h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>03 Hrs In-Vehicle Lessons</li>
+                        <li>-</li>
+                        <li>-</li>
+                        <li>-</li>
+                        <li>-</li>
+                        <li>-</li>
+                        </ul>
+                    <button type="button" class="btn package-btn-1">Join Now</button>
+                </div>
+            </div>
+          </div>
+
+
+
+      <div class="col-sm-3">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="my-0">Student Packages </h4><br>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title">$129</h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>03 Hrs In-Vehicle Lessons</li>
+                        <li>-</li>
+                        <li>-</li>
+                        <li>-</li>
+                        <li>-</li>
+                        <li>-</li>
+                        </ul>
+                    <button type="button" class="btn package-btn-1">Join Now</button>
+                </div>
+            </div>
+          </div>
+      <div class="col-sm-3">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="my-0">New to Canada packages </h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title">$129</h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>03 Hrs In-Vehicle Lessons</li>
+                        <li>-</li>
+                        <li>-</li>
+                        <li>-</li>
+                        <li>-</li>
+                        <li>-</li>
+                        </ul>
+                    <button type="button" class="btn package-btn-1">Join Now</button>
+                </div>
+            </div>
+          </div>
+
+
+
+      <div class="col-sm-3">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h4 class="my-0">Digital packages
+                     </h4><br>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title">$129</h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>03 Hrs In-Vehicle Lessons</li>
+                        <li>-</li>
+                        <li>-</li>
+                        <li>-</li>
+                        <li>-</li>
+                        <li>-</li>
+                        </ul>
+                    <button type="button" class="btn package-btn-1">Join Now</button>
+                </div>
+            </div>
+          </div>
+
+
+
+     
+
+
+
+
+
+
+</div></div>
 
 
 
@@ -280,71 +370,7 @@ Make Payment</p>
         </div>
     </div>
    
-<script>
 
-class UI{
-
-  static async getPackage(){
-    
-    const city = localStorage.getItem("drivinglocationcanada");
-    const cards = document.getElementById('card_deck');
-    console.log(city)
-    
-    try {
-                     
-                     const res = await fetch('/driving-school-packages', { 
-                       method: 'GET', 
-                     });
-                     const data = await res.json();
-                     console.log(data)
-                     if (data.errors) {
-                     }
-                     if (data) {
-                         console.log(data)
-                         data.map(packg => {
-                            cards.innerHTML += `
-                            
-            <div class="col-sm-3">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h4 class="my-0">${packg.package}</h4>
-                    <br>
-                </div>
-                <div class="card-body">
-                    <h1 class="card-title">$ ${packg.options[0].price}</h1>
-                    <ul class="list-unstyled mt-3 mb-4" id="allul">
-                      <li>${packg.options[0].title}</li>
-                        <li>${packg.options[0].description}</li>
-                        <li>${packg.options[0].valid}</li>
-                        <li>${packg.options[0].expires}</li>
-                        <li>${packg.options[0].description}</li>
-                        <li>-</li>
-                        <li>-</li>
-                        </ul>
-                    <button type="button" class="btn package-btn-1">Join Now</button>
-                </div>
-            </div>
-          </div>
-
-                            
-                            
-                            `                      
-                         })
-                     }
-               
-                    } catch (error) {
-                      
-                    }
-
-  }
-
-}
-
-
- // Event: Display Locations
- document.addEventListener('DOMContentLoaded', UI.getPackage);
-
-</script>
 
 
 </body>
