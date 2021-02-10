@@ -41,37 +41,16 @@ Gain eligibility for insurance discount</p></div>
 
 <div class="col">
 <span class="top-nav-1-text-1">Select Location</span>
-   <select class="make-payment-select-2" name="forma1" id="location">
-
-<option>
-Calgery Canada
-</option>
-
-<option>
-Brampton Canada
-</option>
-
-<option>
-Mississauga Dixie
-</option>
-
-<option>
-Toronto North York
-</option>
-
+<!---show locations here -->
+<select class="make-payment-select-2" name="forma1" id="show_locations">
+         
 </select>
 
 </div>
-<div class="col">
-  <a href="#" class="top-nav-1-text-1">Login</a>
-  <a href="#" class="top-nav-1-text-1 ml-3">Signup</a>
+
 </div>
 
-
-      </div>
-
-
-    </div>
+</div>
 
 
 
@@ -185,7 +164,9 @@ FAQs</p>
      <p class="footer-text-2">
 Make Payment</p>
      <p class="footer-text-2">
-      Packages
+      <select class="make-payment-select-2" name="forma1" id="show_locations">
+           
+      </select>
 </p>
     </div>
     <div class="col-sm-3">
@@ -209,64 +190,7 @@ Make Payment</p>
 
 </footer>
 
- <div id="myModal" class="modal fade  " role="dialog" aria-modal="true">
-        <div class="modal-dialog modal-dialog-1">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">X</button>
-                </div>
-                <div class="modal-body">
-                
 
-                <p class="mb-1 text-red-1 h4">Select Location</p>
-<!-- 
-<select class="make-payment-select-1" name="forma" onchange="location = this.value;">
-    <option selected disabled=""> Please Select Location</option>
- <option value="index2.htmlndex2.html">Location 1</option> -->
- <select class="make-payment-select-1 w-100" name="forma" onchange="location = this.value;">
-            <!--<option value="index2.html selected>Select Location </option>-->
-                <option selected disabled=""> Please Select Location</option>
-
-<option value="index2.html">
-            Brampton Central            </option>
-                        <option value="index2.html">
-            Brampton North East            </option>
-                        <option value="index2.html">
-            Brampton North West            </option>
-                        <option value="index2.html">
-            Burlington North            </option>
-                        <option value="index2.html">
-            Burlington South            </option>
-                        <option value="index2.html">
-            Milton            </option>
-                        <option value="index2.html">
-            Mississauga Dixie            </option>
-                        <option value="index2.html">
-            Mississauga Streetsville            </option>
-                        <option value="index2.html">
-            Oakville Downtown            </option>
-                        <option value="index2.html">
-            Oakville Glen Abbey            </option>
-                        <option value="index2.html">
-            Toronto Central / Downtown            </option>
-                        <option value="index2.html">
-            Toronto Etobicoke            </option>
-                        <option value="index2.html">
-            Toronto North York            </option>
-                        <option value="index2.html">
-            Toronto Scarborough            </option>
-                      </select>
-</select>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-red" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
    
 <script>
 
@@ -276,7 +200,7 @@ class UI{
     
     const city = localStorage.getItem("drivinglocationcanada");
     const cards = document.getElementById('card_deck');
-    console.log(city)
+    //console.log(city)
     
     try {
                      
@@ -286,11 +210,11 @@ class UI{
                        headers: {'Content-Type': 'application/json'}
                      });
                      const data = await res.json();
-                     console.log(data)
+                     //console.log(data)
                      if (data.errors) {
                      }
                      if (data) {
-                         console.log(data)
+                         //console.log(data)
                          data.map(packg => {
                             cards.innerHTML += `
                             
@@ -327,21 +251,74 @@ class UI{
 
   }
 
+  static getLocations = async () => {
+ 
+ //let locations = ['Missisaga', 'brampton', 'calgery', 'Toronto', 'Otawa'];
+
+ let locations = [];
+
+  try {
+    
+   const res = await fetch('/driving-school-location', { 
+     method: 'GET', 
+   });
+   const data = await res.json();
+   locations = data;
+    
+   if (data.errors) {
+  
+   }
+   if (data) {
+     // location.assign('/admin-dashboard');
+     const containers = document.querySelectorAll('#show_locations')
+     //console.log(containers)
+
+     containers.forEach(container => {
+
+          //console.log(locations)
+     locations.map(location => {
+
+     container.innerHTML += `
+     <option>${location.location}</option>
+     `
+ })
+
+})
+
+
+   }
+
+
+  } catch (error) {
+    
+  }
+ 
+}
+
+//get values from options and set in local storage and refresh
+static setValues = (e) => {
+
+   localStorage.removeItem('drivinglocationcanada');
+  localStorage.setItem("drivinglocationcanada", e.target.value)
+  setTimeout(() => {
+    location.reload();
+  },2000);
+
+
+}
+
 }
 
 
  // Event: Display Locations
  document.addEventListener('DOMContentLoaded', UI.getPackage);
- const select = document.getElementById('location');
- select.addEventListener('click', setValues)
+ UI.getLocations();
+const select = document.getElementById('show_locations');
+select.addEventListener('click', UI.setValues)
 
- function setValues(e){
-  localStorage.removeItem('drivinglocationcanada');
-  localStorage.setItem("drivinglocationcanada", e.target.value)
-  setTimeout(() => {
-    location.reload();
-  },2000);
- }
+
+
+ 
 
 </script>
 
