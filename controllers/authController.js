@@ -10,13 +10,13 @@ const handleErrors = (err) => {
   let errors = { email: '', password: '' };
 
   // incorrect email
-  if (err.message === 'incorrect email') {
-    errors.email = 'That email is not registered';
+  if (err.message === 'incorrect Email or Password') {
+    errors.email = 'something wrong with email or password';
   }
 
   // incorrect password
-  if (err.message === 'incorrect password') {
-    errors.password = 'That password is incorrect';
+  if (err.message === 'incorrect Email or Password') {
+    errors.password = 'something wrong with email or password';
   }
 
   // duplicate email error
@@ -153,6 +153,7 @@ module.exports.getPackages = async(req, res) => {
 
 module.exports.login_post = async (req, res) => {
   const { email, password } = req.body;
+  //console.log(req.body)
 
   try {
     const user = await User.login(email, password);

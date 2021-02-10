@@ -7,11 +7,11 @@ const jwt = require('jsonwebtoken');
 
 module.exports.addPackages = async(req, res) => {
   
- 
-    const {location, package, title, description, price, valid, expires} = req.body;
-    console.log(location, package, title, description, price, valid, expires)
+  
+    const {location, package, address, description, price, service, phone, time} = req.body;
+    console.log(location, package, address, description, price, service, phone, time)
     try {
-        const packages = new Package({location,package, options: [{title,description, price,valid, expires}]})
+        const packages = new Package({location,package, options: [{description, price,address, service, phone,time}]})
         await packages.save()
         // response.redirect('/admin-dashboard');
         res.status(200).json({packages: packages, message:"package is addedd successfully"}) // created = 201

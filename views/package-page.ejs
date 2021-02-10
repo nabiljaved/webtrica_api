@@ -3,10 +3,12 @@
     .dashboard_main_wrapper{
         
             padding: 50px;
+            
         }
         
         </style>
 
+          <%- include('partials/dropdown'); -%>
 
         <div class="dashboard_main_wrapper">
 
@@ -33,9 +35,10 @@
                 </div>
             
                 <div class="form-group">
-                    <label for="package_title">Title</label>
-                    <input type="text" class="form-control" id="package_title">
+                    <label for="package_address">Address</label>
+                    <input type="text" class="form-control" id="package_address">
                   </div>
+
                   <div class="form-group">
                     <label for="exampleFormControlTextarea1">Description</label>
                     <textarea class="form-control" id="editor" rows="5"></textarea>
@@ -47,13 +50,18 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="package_valid">Validity</label>
-                    <input type="text" class="form-control" id="package_valid">
+                    <label for="package_time">Timing</label>
+                    <input type="text" class="form-control" id="package_time">
                   </div>
             
                   <div class="form-group">
-                    <label for="package_expire">Expires</label>
-                    <input type="text" class="form-control" id="package_expire">
+                    <label for="package_service">Services</label>
+                    <input type="text" class="form-control" id="package_service">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="package_phone">Phone</label>
+                    <input type="text" class="form-control" id="package_phone">
                   </div>
               
                 
@@ -74,35 +82,45 @@
 
 var form = document.querySelector('#form');
 form.addEventListener('submit', addPromotion);
+const backdrop = document.querySelector('.backdrop')
             
        function addPromotion(e){
         e.preventDefault();
-     
+        //backdrop.style.display = "block";
+        
         const location = document.getElementById('package_location').value; 
         const package = document.getElementById('package_selection').value;
-        const title = document.getElementById('package_title').value;
-         const description = document.getElementById('editor').value;
+        const address = document.getElementById('package_address').value;
+        const description = document.getElementById('editor').value;
         const price = document.getElementById('package_price').value;
-         const valid = document.getElementById('package_valid').value;
-        const expires = document.getElementById('package_expire').value;
+        const service = document.getElementById('package_service').value;
+        const phone = document.getElementById('package_phone').value;
+        const time = document.getElementById('package_time').value;
         
-        if(location === '' || package === '' || title === '' || description === '' || price === '' || valid === '' || expires === ''){
+        if(location === '' || package === '' || address === '' || description === '' 
+        || price === '' || service === '' 
+        || phone === '' || time === ''){
           UI.showAlert('Please fill in all fields', 'danger');
+          
           return;
         }
 
+       
 
         var data = {
              "location" : location,
              "package": package,
-             "title": title,
+             "address": address,
              "description" : description,
              "price": price,
-             "valid" : valid,
-             "expires": expires
+             "service" : service,
+             "phone": phone,
+             "time": time
         }
         
-        
+         console.log(data)
+        //  backdrop.style.display = "none";
+        // backdrop.style.display = "none";
 
         fetch('http://localhost:5000/admin-dashboard/add-package', {
         method: 'post',
@@ -143,13 +161,14 @@ form.addEventListener('submit', addPromotion);
 
 static emptyFields()
 {
-        document.getElementById('package_location').value = ''; 
-        document.getElementById('package_selection').value = '';
-        document.getElementById('package_title').value = '';
-        document.getElementById('editor').value = '';
-        document.getElementById('package_price').value = '';
-        document.getElementById('package_valid').value = '';
-        document.getElementById('package_expire').value = '';
+        document.getElementById('package_location').value = ""; 
+        document.getElementById('package_selection').value= "";
+        document.getElementById('package_address').value= "";
+        document.getElementById('editor').value= "";
+        document.getElementById('package_price').value= "";
+        document.getElementById('package_service').value= "";
+        document.getElementById('package_phone').value= "";
+        document.getElementById('package_time').value= "";
         
 }
 

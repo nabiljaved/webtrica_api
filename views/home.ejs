@@ -166,11 +166,13 @@ viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
           <i class="fa fa-envelope-open"></i><br>
         Our Services</p>
           </div>
-<ul class="home-ul-1">
- <li>
-MTO-Approved, professional driving instructors</li>
-<li>No time wasted – immediate hands­ on driving lessons</li>
+
+<ul class="home-ul-1" id="our_services">
+ <!-- <li>MTO-Approved, professional driving instructors</li>
+<li>No time wasted – immediate hands­ on driving lessons</li> -->
 </ul>
+
+
 </div>
     </div>
 
@@ -183,11 +185,9 @@ MTO-Approved, professional driving instructors</li>
           <i class="fa fa-history"></i><br>
             Working Time</p>
           </div>
-<ul class="home-ul-1">
- <li>Email us 24/7 at canadiandigitaldriving@gmail.com
-</li>
-<li>Call Us. Weekend 10am to 4pm (EST) 
-</li>
+<ul class="home-ul-1" id="working_times">
+ <!-- <li>Email us 24/7 at canadiandigitaldriving@gmail.com</li>
+<li></li>Call Us. Weekend 10am to 4pm (EST) </li> -->
 
 </ul>
 </div>
@@ -202,12 +202,11 @@ MTO-Approved, professional driving instructors</li>
           <i class="fa fa-map-marker"></i><br>
         Location</p>
           </div>
-<ul class="home-ul-1">
-  A)  In-Class location
- <li>3024 Hurontario Street Unit 206B, </li>
+<ul class="home-ul-1" id="our_location">
+ <!-- <li>3024 Hurontario Street Unit 206B, </li>
 <li>Mississauga ON L5B 4M4.</li>
 
-  B) Digital course available 
+  B) Digital course available  -->
 
 </ul>
 
@@ -225,8 +224,8 @@ MTO-Approved, professional driving instructors</li>
          <p class="mb-0 font-weight-bold text-center text-light pt-3">
           <i class="fa fa-phone"></i><br>
         Call Us</p>
-          </div>
-<p class="py-3 px-3">647-860-2337</p></div>
+         </div>
+<p class="py-3 px-3" id="our_phone"></p></div>
     </div>
 
 </div>
@@ -489,6 +488,80 @@ $('.modal').modal('show');
 
 </script>
  -->
+
+
+<script>
+
+ async function getPackage(){
+    
+    const city = localStorage.getItem("drivinglocationcanada");
+    const ourservices = document.getElementById('our_services');
+    const workingtimes = document.getElementById('working_times');
+    const ourlocation = document.getElementById('our_location');
+    const ourphone = document.getElementById('our_phone');
+    
+
+    //console.log(city)
+    
+    try {
+                     
+                     const res = await fetch('/driving-school-getPackageByCityName', { 
+                       method: 'POST', 
+                       body: JSON.stringify({location: city}),
+                       headers: {'Content-Type': 'application/json'}
+                     });
+                     const data = await res.json();
+                     console.log(data)
+                     //console.log(data)
+                     if (data.errors) {
+                     }
+                     if (data) {
+                         //console.log(data)
+                         data.map(packg => {
+                          ourservices.innerHTML += `
+                            
+                              <li>${packg.options[0].description}</li>
+                        
+                            `   
+                            
+                            workingtimes.innerHTML += `
+                            
+                              <li>${packg.options[0].time}</li>
+                        
+                            ` 
+
+                            ourlocation.innerHTML = packg.location
+                            var node = document.createTextNode(`${packg.options[0].phone}`);
+                            ourphone.appendChild(node)
+
+                         })
+
+                         
+                     }
+               
+                    } catch (error) {
+                      
+                    }
+
+  }
+
+
+ const setValues = (e) => {
+
+    localStorage.removeItem('drivinglocationcanada');
+    localStorage.setItem("drivinglocationcanada", e.target.value)
+    setTimeout(() => {
+    location.reload(); 
+  },2000);
+}
+
+getPackage();
+
+const select = document.getElementById('show_locations');
+select.addEventListener('click', setValues)
+
+
+</script>
 
 
 </body>

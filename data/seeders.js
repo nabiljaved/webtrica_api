@@ -17,16 +17,16 @@ const importData = async () => {
   try {
 
     //delete existing data
-    await Promotion.deleteMany()
-    await Contact.deleteMany()
-    // await Package.deleteMany()
-    await User.deleteMany()
+    // await Promotion.deleteMany()
+    // await Contact.deleteMany()
+    await Package.deleteMany()
+    // await User.deleteMany()
 
     //add new data
-    await Promotion.insertMany(promotions)
-    await Contact.insertMany(contacts)
+    // await Promotion.insertMany(promotions)
+    // await Contact.insertMany(contacts)
     // await Package.insertMany(packages)
-    await User.insertMany(users)
+    // await User.insertMany(users)
     
     console.log('Data Imported!')
     process.exit()
@@ -39,10 +39,10 @@ const importData = async () => {
 const destroyData = async () => {
   try {
     
-    await Promotion.deleteMany()
-    await Contact.deleteMany()
+    // await Promotion.deleteMany()
+    // await Contact.deleteMany()
     await Package.deleteMany()
-    await User.deleteMany()
+    // await User.deleteMany()
   
     console.log('Data Destroyed!')
     process.exit()

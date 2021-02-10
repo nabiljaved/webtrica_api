@@ -194,7 +194,39 @@ Make Payment</p>
    
 <script>
 
+document.addEventListener('DOMContentLoaded', loadFunctions);
+
 class UI{
+
+
+  static async bookPackage(booking){
+
+        console.log(booking)    
+        const package_selected = booking.querySelector('h1').textContent
+
+        let time = booking.querySelectorAll('ul li')[0].textContent.trim()
+        let description = booking.querySelectorAll('ul li')[1].textContent.trim()
+        let address = booking.querySelectorAll('ul li')[2].textContent.trim()
+        let service = booking.querySelectorAll('ul li')[3].textContent.trim()
+        let phone = booking.querySelectorAll('ul li')[4].textContent.trim()
+        let location = booking.querySelectorAll('ul li')[5].textContent.trim()
+
+        time = time.replace("Time :", "").trim()
+
+        const bookinfo = {
+          package : package_selected, 
+          time : time, 
+          description : description,
+          address : address, 
+          service: service,
+          phone : phone,
+          location:location
+        }
+
+        localStorage.setItem('bookinginfo', JSON.stringify(bookinfo) );
+
+
+  }
 
   static async getPackage(){
     
@@ -227,15 +259,15 @@ class UI{
                 <div class="card-body">
                     <h1 class="card-title">$ ${packg.options[0].price}</h1>
                     <ul class="list-unstyled mt-3 mb-4" id="allul">
-                      <li>${packg.options[0].title}</li>
+                      <li>Time : ${packg.options[0].time}</li>
                         <li>${packg.options[0].description}</li>
-                        <li>${packg.options[0].valid}</li>
-                        <li>${packg.options[0].expires}</li>
-                        <li>${packg.options[0].description}</li>
+                        <li>${packg.options[0].address}</li>
+                        <li>${packg.options[0].service}</li>
+                        <li>${packg.options[0].phone}</li>
                         <li>${packg.location}</li>
                         <li>-</li>
                         </ul>
-                    <button type="button" class="btn package-btn-1">Join Now</button>
+                    <a type="button" a href="/book-package-page" class="btn package-btn-1" id="bookingbutton">Join Now</a>
                 </div>
             </div>
           </div>
@@ -308,17 +340,20 @@ static setValues = (e) => {
 }
 
 }
-
-
- // Event: Display Locations
- document.addEventListener('DOMContentLoaded', UI.getPackage);
- UI.getLocations();
-const select = document.getElementById('show_locations');
-select.addEventListener('click', UI.setValues)
-
-
-
  
+async function loadFunctions(){
+  
+  
+  const select = document.getElementById('show_locations');
+  select.addEventListener('click', UI.setValues)
+
+  await UI.getPackage();
+  await UI.getLocations();
+  const book = document.getElementById('bookingbutton');
+  book.addEventListener('click', () => {console.log("working")})
+  UI.bookPackage(book.parentElement);
+
+}
 
 </script>
 

@@ -38,6 +38,7 @@ router.get('/package', (req, res) => res.render('package'));
 router.get('/job-opportunity', (req, res) => res.render('job-opportunity'));
 router.get('/make-payment', (req, res) => res.render('make-payment'));
 router.get('/contact-us', (req, res) => res.render('contact-us'));
+router.get('/book-package-page', (req, res) => res.render('show-book-page'));
 router.post('/driving-school-getPackageByCityName', apiController.getPackagesByCityName);
 
 module.exports = router;

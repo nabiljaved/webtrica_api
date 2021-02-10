@@ -33,8 +33,8 @@ app.use(express.static(publicDirectoryPath));
 app.use(express.static(assets));
 
 // routes
-//   app.get('*', checkUser)
-// app.use(authRoutes)
+app.get('*', checkUser)
+app.use(authRoutes)
 app.use(drivingSchoolRoutes)
 app.use('/admin-dashboard',dashBoardRoutes)
 

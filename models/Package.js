@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const packageSchema = new mongoose.Schema({
+    
     location : {
         type: String,
         required : true,
@@ -13,7 +14,7 @@ const packageSchema = new mongoose.Schema({
     },
     options : [
         {
-            title : {
+            address : {
                 type: String,
                 required : true,
                 trim : true, 
@@ -28,12 +29,17 @@ const packageSchema = new mongoose.Schema({
                 required : true,
                 trim : true, 
             },
-            valid : {
+            service : {
                 type: String,
                 required : true,
                 trim : true, 
             },
-            expires : {
+            phone : {
+                type: String,
+                required : true,
+                trim : true, 
+            },
+            time : {
                 type: String,
                 required : true,
                 trim : true, 
