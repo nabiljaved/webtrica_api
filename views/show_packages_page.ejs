@@ -2,7 +2,7 @@
 
     .dashboard_main_wrapper{
         
-            padding: 50px;
+            padding: 10px;
         }
         
         </style>
@@ -25,11 +25,12 @@
                                 <th> Location</th>
                                 <th> Package</th>
                                 <th> Description</th>
-                                <th> Title </th>
+                                <th> Adress </th>
                                 <th> Price </th>
-                                <th> Title </th>
-                                <th> Valid </th>
-                                <th> Expires </th>
+                                <th> Service </th>
+                                <th> Phone </th>
+                                <th> Time </th>
+                                <th> Added By  </th>
                                 <th>Actions</th>
                             </thead>
             
@@ -37,11 +38,12 @@
                                 <th> Location</th>
                                 <th> Package</th>
                                 <th> Description</th>
-                                <th> Title </th>
+                                <th> Adress </th>
                                 <th> Price </th>
-                                <th> Title </th>
-                                <th> Valid </th>
-                                <th> Expires </th>
+                                <th> Service </th>
+                                <th> Phone </th>
+                                <th> Time </th>
+                                <th> Added By  </th>
                                 <th>Actions</th>
                             </tfoot>
             
@@ -93,11 +95,12 @@
                                 <td>${packg.location}</td>
                                 <td>${packg.package}</td>
                                 <td>${packg.options[0].description}</td>
-                                <td>${packg.options[0].title}</td>
+                                <td>${packg.options[0].address}</td>
                                 <td>${packg.options[0].price}</td>
-                                <td>${packg.options[0].title}</td>
-                                <td>${packg.options[0].valid}</td>
-                                <td>${packg.options[0].expires}</td>
+                                <td>${packg.options[0].service}</td>
+                                <td>${packg.options[0].phone}</td>
+                                <td>${packg.options[0].time}</td>
+                                <td>${packg.useremail}</td>
                                 <td> <a href="#" class="btn btn-outline-primary btn-sm"> Edit </a> | <a href="" class="btn btn-outline-danger btn-sm"> Delete </a> </td>
                             </tr>
                            

@@ -1,7 +1,16 @@
 const mongoose = require('mongoose')
 
 const promotionSchema = new mongoose.Schema({
-
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User',
+    },
+    useremail : {
+        type: String,
+        required : true,
+        trim : true, 
+    },
     title : {
         type: String,
         required : true,

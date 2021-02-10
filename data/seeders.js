@@ -39,10 +39,10 @@ const importData = async () => {
 const destroyData = async () => {
   try {
     
-    // await Promotion.deleteMany()
-    // await Contact.deleteMany()
+    await Promotion.deleteMany()
+    await Contact.deleteMany()
     await Package.deleteMany()
-    // await User.deleteMany()
+    //await User.deleteMany()
   
     console.log('Data Destroyed!')
     process.exit()

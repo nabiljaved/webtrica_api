@@ -44,23 +44,19 @@ const redirectRoutes = (req, res, next) => {
 
 const protectedRoutes = async (req, res, next) => {
   try {
-    const token = req.header('Authorization').replace('Bearer ', '');
-    console.log(token)
-
-    //console.log(token)
+    
+    const token = req.cookies.jwt;
+    
     const decoded = jwt.verify(token, process.env.JWT_SECRET) // securing secret key
-    console.log("decoded token is  : "+decoded.id)
 
     const user = await User.findOne({_id: decoded.id})
 
-    console.log("user id   "+user._id)
 
     if (!user) {
         throw new Error()
         console.log("no user")
     }
     req.user = user
-    req.token = token      
     next()
 
 } catch (error) {

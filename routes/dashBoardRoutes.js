@@ -16,9 +16,9 @@ router.get('/add-contact', (req, res) => res.render('contact-page', { layout: 'd
 
 
 //post methods contact-us
-router.post('/add-package', adminController.addPackages);
-router.post('/add-promotion', adminController.addPromotion);
-router.post('/add-contact', adminController.addContact);
+router.post('/add-package',  protectedRoutes, adminController.addPackages);
+router.post('/add-promotion', protectedRoutes,  adminController.addPromotion);
+router.post('/add-contact',  protectedRoutes, adminController.addContact);
 
 
 
