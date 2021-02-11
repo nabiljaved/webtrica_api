@@ -1,6 +1,9 @@
 const Package = require('../models/Package');
 const Promotion = require('../models/Promotion')
 const Contact = require('../models/Contact')
+const ContactUs = require('../models/ContactUs')
+const JobOpportunity = require('../models/JobOpportunity')
+
 
 
 
@@ -64,3 +67,40 @@ module.exports.getPackagesByCityName = async(req, res) => {
     console.log(location)
 
 }  
+
+module.exports.jobOpportunity = async (req, res) => {
+
+    const {name, email, phone, subject, message} = req.body;
+
+    try {
+        const jobs = new JobOpportunity({name, email, phone, subject, message})
+        await jobs.save()
+        // response.redirect('/admin-dashboard');
+        res.status(200).json({jobs: jobs, message:"job is sent successfully"}) // created = 201
+        console.log(jobs)
+    } catch (e) {
+        res.status(400).json({errors: "could not sent message", er:e}) // bad error = 400
+        console.log(e.message)
+    }
+
+} 
+
+module.exports.contactUs = async(req, res) => {
+
+    const {name, email, phone, subject, message} = req.body;
+
+
+
+    try {
+        const contactus = new ContactUs({name, email, phone, subject, message})
+        await contactus.save()
+        // response.redirect('/admin-dashboard');
+        res.status(200).json({contactus: contactus, message:"message is sent successfully"}) // created = 201
+        console.log(packages)
+    } catch (e) {
+        res.status(400).json({errors: "could not sent message", er:e}) // bad error = 400
+        console.log(e.message)
+    }
+
+ 
+}

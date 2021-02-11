@@ -172,32 +172,32 @@ Call Us. Weekdays 9am to 8pm (EST)
  -->
 
 
-<form class="mt-5 mb-5">
-  <div class="form-row">
+ <form action="/contact-us" class="mt-5"  id="form" method="post">
+
+  <div  class="form-row" id="inner_container">
      <div class="form-group col-md-4">
-      <label >Name</label>
-      <input type="text" class="form-control"  placeholder="Name">
+      <label for="name">Name</label>
+      <input type="text" class="form-control"  placeholder="Name" name="name">
     </div>
     <div class="form-group col-md-4">
-      <label >Email</label>
-      <input type="email" class="form-control"  placeholder="Email">
+      <label for="email">Email</label>
+      <input type="email" class="form-control"  placeholder="Email" name="email">
     </div>
     <div class="form-group col-md-4">
-      <label >Phone</label>
-      <input type="number" class="form-control" placeholder="Phone" min="0">
+      <label for="phone">Phone</label>
+      <input type="number" class="form-control" placeholder="Phone" min="0" name="phone">
     </div>
 
   </div>
 
-
   <div class="form-group">
     <label >Subject</label>
-    <input type="text" class="form-control" placeholder="Subject">
+    <input type="text" class="form-control" placeholder="Subject" name="subject">
   </div>
  
   <div class="form-group">
     <label >Message</label>
-    <textarea class="form-control" placeholder="Message"></textarea>
+    <textarea class="form-control" placeholder="Message" name="message"></textarea>
   </div>
  
 
@@ -327,12 +327,91 @@ Make Payment</p>
      }
     
 }
+
+static showAlert(message, className){
+
+const div = document.createElement('div');
+div.className = `alert alert-${className}`;
+div.appendChild(document.createTextNode(message));
+const form = document.querySelector('#form');
+const inner = document.querySelector('#inner_container');
+form.insertBefore(div, inner);
+
+// Vanish in 3 seconds
+setTimeout(() => document.querySelector('.alert').remove(), 3000);
+
+
+}
+
+static emptyFields(e){
+
+e.target.name.value = '' ,
+e.target.email.value = '',
+e.target.phone.value = '',
+e.target.subject.value = '',
+e.target.message.value = ''  
+
+}
+
+
+static sendInformation(body,  fields){
+
+//console.log(body)
+
+fetch('/job-opportunity-form', {
+method: 'post',
+body: JSON.stringify(body),
+headers: {'Content-Type': 'application/json'}
+
+}).then(function(response) {
+return response.json();
+}).then(function(data) {
+UI.showAlert("request is sent successfully", "success")
+UI.emptyFields(fields)
+location.reload()
+});
+
+
+
+
+}
+
+static submitForm(e){
+
+e.preventDefault();
+
+const body = {
+
+  name : e.target.name.value,
+  email : e.target.email.value,
+  phone : e.target.phone.value,
+  subject : e.target.subject.value,
+  message : e.target.message.value  
+
+}
+
+if(e.target.name.value == '' || e.target.email.value == '' || e.target.phone.value == '', 
+e.target.subject.value == '', e.target.message.value == ''){
+
+  UI.showAlert("please fill all fields", "danger")
+  UI.emptyFields(e)
+
+}
+
+UI.sendInformation(body, e)
+
+
+
+}
+
   
   }
 
    // Event: Display Locations
    document.addEventListener('DOMContentLoaded', UI.getLocations);
    document.addEventListener('click',UI.chooseLocation);
+   const form = document.getElementById("form")
+   form.addEventListener('submit', UI.submitForm);
    
   </script>
 

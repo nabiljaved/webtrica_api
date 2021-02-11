@@ -41,4 +41,10 @@ router.get('/contact-us', (req, res) => res.render('contact-us'));
 router.get('/book-package-page', (req, res) => res.render('show-book-page'));
 router.post('/driving-school-getPackageByCityName', apiController.getPackagesByCityName);
 
+
+//render post routes
+
+router.post('/contact-us-form', apiController.contactUs);
+router.post('/job-opportunity-form', apiController.jobOpportunity);
+
 module.exports = router;
