@@ -8,31 +8,35 @@
 <div class="dashboard_main_wrapper">
 
 
-    <h1 class="display-3" style="text-align: center;">All Promotions</h1>
+    <h1 class="display-3" style="text-align: center;">Client Bookings</h1>
 
 
     <div class="card mb-3">
         <div class="card-header">
-            <i class="fas fa-table"></i> All News </div>
+            <i class="fas fa-table"></i> All Bookings </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
-                        <th> Title</th>
-                        <th> Description </th>
-                        <th> Expire</th>
-                        <th> City </th>
-                        <th> Added By </th>
-                        <th> Actions </th>
+                        <th> Name</th>
+                        <th> Email </th>
+                        <th> Phone</th>
+                        <th> Package </th>
+                        <th> Location </th>
+                        <th> Message </th>
+                        <th> Date </th>
+                        <th> Action </th>
                     </thead>
 
                     <tfoot>
-                        <th> Title</th>
-                        <th> Description </th>
-                        <th> Expire</th>
-                        <th> City </th>
-                        <th> Added By </th>
-                        <th> Actions </th>
+                        <th> Name</th>
+                        <th> Email </th>
+                        <th> Phone</th>
+                        <th> Package </th>
+                        <th> Location </th>
+                        <th> Message </th>
+                        <th> Date </th>
+                        <th> Action </th>
                     </tfoot>
 
                     <tbody id="table-body">
@@ -53,38 +57,38 @@
 
                 //let locations = ['Missisaga', 'brampton', 'calgery', 'Toronto', 'Otawa'];
 
-                let contacts = [];
+                let bookings = [];
 
                 try {
 
-                    const res = await fetch('/driving-school-promotions', {
+                    const res = await fetch('/driving-school-bookings', {
                         method: 'GET',
                     });
                     const data = await res.json();
-                    contacts = data;
+                    bookings = data;
 
                     if (data.errors) {
 
                     }
                     if (data) {
 
-                        console.log(contacts)
+                        console.log(bookings)
 
                         const body = document.getElementById('table-body')
 
-                        contacts.map(contact => {
+                        bookings.map(booking => {
 
                             body.innerHTML += `
 
                             <tr>
-                                <td>${contact.title}</td>
-                                <td> ${contact.description.substring(0, 25)}....</td>
-                                <td>${contact.expire}</td>
-                                <td>${contact.city}</td>
-                                <td>${contact.useremail}</td>
+                                <td>${booking.name}</td>
+                                <td> ${booking.email}....</td>
+                                <td> ${booking.phone}....</td>
+                                <td> ${booking.package}....</td>
+                                <td> ${booking.location}....</td>
+                                <td> ${booking.message}....</td>
+                                <td> ${booking.date}....</td>
                                 <td> <a href="#" class="btn btn-outline-primary btn-sm"> Edit </a> | <a href="" class="btn btn-outline-danger btn-sm"> Delete </a> </td>
-                            </tr>
-
                             `
 
                         })

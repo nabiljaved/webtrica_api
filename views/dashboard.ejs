@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
- 
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="/assets/vendor/charts/c3charts/c3.css">
     <link rel="stylesheet" href="/assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
-    
+
     <title>CarLift App</title>
 </head>
 
@@ -93,13 +93,13 @@
                                 <li class="connection-list">
                                     <div class="row">
                                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="/assets/images/github.png" alt="" > <span>Github</span></a>
+                                            <a href="#" class="connection-item"><img src="/assets/images/github.png" alt=""> <span>Github</span></a>
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="/assets/images/dribbble.png" alt="" > <span>Dribbble</span></a>
+                                            <a href="#" class="connection-item"><img src="/assets/images/dribbble.png" alt=""> <span>Dribbble</span></a>
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="/assets/images/dropbox.png" alt="" > <span>Dropbox</span></a>
+                                            <a href="#" class="connection-item"><img src="/assets/images/dropbox.png" alt=""> <span>Dropbox</span></a>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -107,10 +107,10 @@
                                             <a href="#" class="connection-item"><img src="/assets/images/bitbucket.png" alt=""> <span>Bitbucket</span></a>
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="/assets/images/mail_chimp.png" alt="" ><span>Mail chimp</span></a>
+                                            <a href="#" class="connection-item"><img src="/assets/images/mail_chimp.png" alt=""><span>Mail chimp</span></a>
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 ">
-                                            <a href="#" class="connection-item"><img src="/assets/images/slack.png" alt="" > <span>Slack</span></a>
+                                            <a href="#" class="connection-item"><img src="/assets/images/slack.png" alt=""> <span>Slack</span></a>
                                         </div>
                                     </div>
                                 </li>
@@ -123,15 +123,17 @@
                             <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="/assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
                                 <div class="nav-user-info">
-                           
+
                                     <% if (user) { %>
-                                        <h5 class="mb-0 text-white nav-user-name"> <%=user.email%> </h5>
+                                        <h5 class="mb-0 text-white nav-user-name">
+                                            <%=user.email%>
+                                        </h5>
                                         <span class="status"></span><span class="ml-2">Available</span>
-                                      <% } else { %>
-                                        <h5 class="mb-0 text-white nav-user-name">Random User </h5>
-                                        <span class="status"></span><span class="ml-2">not Available</span>
-                                      <% } %>
-                                       
+                                        <% } else { %>
+                                            <h5 class="mb-0 text-white nav-user-name">Random User </h5>
+                                            <span class="status"></span><span class="ml-2">not Available</span>
+                                            <% } %>
+
                                 </div>
                                 <a class="dropdown-item" href="/logout"><i class="fas fa-power-off mr-2"></i>Logout</a>
                             </div>
@@ -190,7 +192,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="/admin-dashboard/add-contact">Add Contacts</a>
                                         </li>
-                                        
+
                                         <!-- <li class="nav-item">
                                             <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-1" aria-controls="submenu-1-1">Infulencer</a>
                                             <div id="submenu-1-1" class="collapse submenu" style="">
@@ -223,33 +225,26 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="/admin-dashboard/show_contacts">Contacts</a>
                                         </li>
-                                      
-                                    
+
+
                                     </ul>
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Chart</a>
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Review Activities</a>
                                 <div id="submenu-3" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
+
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-c3.html">C3 Charts</a>
+                                            <a class="nav-link" href="/admin-dashboard/show_all_bookings">Pending Bookings</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-chartist.html">Chartist Charts</a>
+                                            <a class="nav-link" href="/admin-dashboard/show_all_jobs">Applied for Job</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-charts.html">Chart</a>
+                                            <a class="nav-link" href="/admin-dashboard/show_all_contacted_us">Cotacted us</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-morris.html">Morris</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-sparkline.html">Sparkline</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="pages/chart-gauge.html">Guage</a>
-                                        </li>
+
                                     </ul>
                                 </div>
                             </li>
@@ -435,12 +430,12 @@
         <!-- wrapper  -->
         <!-- ============================================================== -->
         <div class="dashboard-wrapper">
-          
-           <%-body%>
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
-            <!-- <div class="footer fixed-bottom" style="z-index: -1;">
+
+            <%-body%>
+                <!-- ============================================================== -->
+                <!-- footer -->
+                <!-- ============================================================== -->
+                <!-- <div class="footer fixed-bottom" style="z-index: -1;">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
@@ -456,9 +451,9 @@
                     </div>
                 </div>
             </div> -->
-            <!-- ============================================================== -->
-            <!-- end footer -->
-            <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- end footer -->
+                <!-- ============================================================== -->
         </div>
         <!-- ============================================================== -->
         <!-- end wrapper  -->
@@ -495,5 +490,5 @@
         CKEDITOR.replace('editor1');
     </script>
 </body>
- 
+
 </html>

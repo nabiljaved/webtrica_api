@@ -1,0 +1,104 @@
+<style>
+    .dashboard_main_wrapper {
+        padding: 20px;
+    }
+</style>
+
+
+<div class="dashboard_main_wrapper">
+
+
+    <h1 class="display-3" style="text-align: center;">Applied For Jobs</h1>
+
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-table"></i> All Bookings </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <th> Name</th>
+                        <th> Email </th>
+                        <th> Phone</th>
+                        <th> Subject </th>
+                        <th> Message </th>
+                        <th> Action </th>
+                    </thead>
+
+                    <tfoot>
+                        <th> Name</th>
+                        <th> Email </th>
+                        <th> Phone</th>
+                        <th> Subject </th>
+                        <th> Message </th>
+                        <th> Action </th>
+                    </tfoot>
+
+                    <tbody id="table-body">
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        class UI {
+
+            static getJobs = async() => {
+
+                //let locations = ['Missisaga', 'brampton', 'calgery', 'Toronto', 'Otawa'];
+
+                let jobs = [];
+
+                try {
+
+                    const res = await fetch('/driving-school-jobs', {
+                        method: 'GET',
+                    });
+                    const data = await res.json();
+                    jobs = data;
+
+                    if (data.errors) {
+
+                    }
+                    if (data) {
+
+                        console.log(data)
+
+                        const body = document.getElementById('table-body')
+
+                        jobs.map(booking => {
+
+                            body.innerHTML += `
+
+                            <tr>
+                                <td>${booking.name}</td>
+                                <td> ${booking.email}....</td>
+                                <td> ${booking.phone}....</td>
+                                <td> ${booking.subject}....</td>
+                                <td> ${booking.message}....</td>
+
+                                <td> <a href="#" class="btn btn-outline-primary btn-sm"> Edit </a> | <a href="" class="btn btn-outline-danger btn-sm"> Delete </a> </td>
+                            `
+
+                        })
+
+                    }
+
+
+                } catch (error) {
+
+                }
+
+            }
+
+        }
+
+        // Event: Display Locations
+        document.addEventListener('DOMContentLoaded', UI.getJobs);
+    </script>
