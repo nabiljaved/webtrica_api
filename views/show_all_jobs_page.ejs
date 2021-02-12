@@ -48,35 +48,66 @@
     <!--modal -->
 
     <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Job</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/contact-us" class="mt-5" id="form" method="post">
+
+
+
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" placeholder="Name" name="name" id="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" placeholder="Email" name="email" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" class="form-control" placeholder="Phone" id="phone">
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <input type="text" class="form-control" placeholder="Subject" name="subject" id="subject">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea class="form-control" placeholder="Message" name="message" id="message"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn make-payment-btn-1 btn-warning">Update</button>
+
+                        <button type="submit" class="btn make-payment-btn-1 btn-danger">Delete</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-            <h1></h1>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
     </div>
-  </div>
 
     <script>
+        class Jobs {
 
-        class Jobs{
-
-            constructor(name, email, phone, subject, message){
-                this.name = name; 
-                this.email = email; 
-                this.phone = phone; 
-                subject = subject; 
+            constructor(name, email, phone, subject, message) {
+                this.name = name;
+                this.email = email;
+                this.phone = phone;
+                this.subject = subject;
                 this.message = message
             }
 
@@ -91,17 +122,32 @@
 
                 let values = [];
 
-                const row = document.getElementById('clicked_row').parentElement;   
-                
-                var row_value = ""; 
-  
-                for (var j = 0; j < (row.cells.length) -1 ; j++) { 
-           
-                    values.push(row.cells[j].innerHTML) 
-                } 
+                const row = document.getElementById('clicked_row').parentElement;
+
+                var row_value = "";
+
+                for (var j = 0; j < (row.cells.length) - 1; j++) {
+
+                    values.push(row.cells[j].innerHTML)
+                }
                 console.log(values)
-                const user = new Jobs(values[0], values[1],values[2],values[3],values[4])
-                
+                const user = new Jobs(values[0], values[1], values[2], values[3], values[4])
+
+                const name = document.getElementById('name');
+                const email = document.getElementById('email');
+                const phone = document.getElementById('phone');
+                const subject = document.getElementById('subject');
+                const message = document.getElementById('message');
+
+
+
+
+                name.value = user.name
+                email.value = user.email
+                phone.value = user.phone
+                subject.value = user.subject
+                message.value = user.message
+
             }
 
             static getJobs = async() => {
@@ -127,16 +173,16 @@
 
                         const body = document.getElementById('table-body')
 
-                        jobs.map(booking => {
+                        jobs.map(job => {
 
                             body.innerHTML += `
 
                             <tr>
-                                <td>${booking.name}</td>
-                                <td> ${booking.email}....</td>
-                                <td> ${booking.phone}....</td>
-                                <td> ${booking.subject}....</td>
-                                <td> ${booking.message}....</td>
+                                <td>${job.name}</td>
+                                <td> ${job.email}....</td>
+                                <td> ${job.phone}....</td>
+                                <td> ${job.subject}....</td>
+                                <td> ${job.message}....</td>
 
                                 <td id="clicked_row"> <a href="#" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-info btn-sm" onclick="UI.myFunction()"> View </a> </td> 
                                 
@@ -144,6 +190,10 @@
                             `
 
                         })
+
+
+
+
 
                     }
 

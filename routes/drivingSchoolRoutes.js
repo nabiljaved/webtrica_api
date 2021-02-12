@@ -29,6 +29,7 @@ router.get('/driving-school-promotions', apiController.getPromotions);
 router.get('/driving-school-packages', apiController.getPackages);
 router.get('/driving-school-bookings', apiController.getBookings);
 router.get('/driving-school-jobs', apiController.getJobs);
+router.get('/driving-school-jobs-people-contacted-us', apiController.getPeopleContactedUs);
 
 
 

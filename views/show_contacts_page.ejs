@@ -1,74 +1,68 @@
 <style>
-
-    .dashboard_main_wrapper{
-        
-            padding: 20px;
-        }
-        
-        </style>
+    .dashboard_main_wrapper {
+        padding: 20px;
+    }
+</style>
 
 
-        <div class="dashboard_main_wrapper">
+<div class="dashboard_main_wrapper">
 
 
-            <h1 class="display-3" style="text-align: center;">All Contacts</h1>
+    <h1 class="display-3" style="text-align: center;">All Contacts</h1>
 
-        
-            <div class="card mb-3">
-                <div class="card-header">
-                    <i class="fas fa-table"></i>
-                    All News </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <th> Name</th>
-                                <th> Address </th>
-                                <th> Phone </th>
-                                <th> Added by </th>
-                                <th> Actions </th>
-                            </thead>
-            
-                            <tfoot>
-                                <th> Name</th>
-                                <th> Address </th>
-                                <th> Phone </th>
-                                <th> Added by </th>
-                                <th> Actions </th>
-                            </tfoot>
-            
-                            <tbody id="table-body">
-                                
-                                      
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-table"></i> All News </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <th> Name</th>
+                        <th> Address </th>
+                        <th> Phone </th>
+                        <th> Added by </th>
+                        <th> Actions </th>
+                    </thead>
+
+                    <tfoot>
+                        <th> Name</th>
+                        <th> Address </th>
+                        <th> Phone </th>
+                        <th> Added by </th>
+                        <th> Actions </th>
+                    </tfoot>
+
+                    <tbody id="table-body">
+
+
+                    </tbody>
+                </table>
             </div>
+        </div>
+
+    </div>
 
 
-            <script>
+    <script>
+        class UI {
 
-  
-                class UI{
-                
-                  static getContacts = async () => {
-              
-                  //let locations = ['Missisaga', 'brampton', 'calgery', 'Toronto', 'Otawa'];
-              
-                  let contacts = [];
-              
-                   try {
-                     
-                    const res = await fetch('/driving-school-contacts', { 
-                      method: 'GET', 
+            static getContacts = async() => {
+
+                //let locations = ['Missisaga', 'brampton', 'calgery', 'Toronto', 'Otawa'];
+
+                let contacts = [];
+
+                try {
+
+                    const res = await fetch('/driving-school-contacts', {
+                        method: 'GET',
                     });
                     const data = await res.json();
                     contacts = data;
-                     
+
                     if (data.errors) {
-                   
+
                     }
                     if (data) {
 
@@ -89,22 +83,20 @@
                             </tr>
 
                             `
-                            
+
                         })
 
                     }
-              
-              
-                   } catch (error) {
-                     
-                   }
-                  
-              }
-                
+
+
+                } catch (error) {
+
                 }
-              
-                 // Event: Display Locations
-                 document.addEventListener('DOMContentLoaded', UI.getContacts);
-                 
-                </script>
-              
+
+            }
+
+        }
+
+        // Event: Display Locations
+        document.addEventListener('DOMContentLoaded', UI.getContacts);
+    </script>

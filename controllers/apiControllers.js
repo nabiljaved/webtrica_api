@@ -147,3 +147,12 @@ module.exports.getJobs = async(req, res) => {
     }
 
 }
+
+module.exports.getPeopleContactedUs = async(req, res) => {
+
+    const contacts = await ContactUs.find({})
+
+    res.json(contacts)
+
+
+}
