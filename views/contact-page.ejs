@@ -64,13 +64,13 @@
 
     console.log([name, address, phone])
 
-    fetch('http://canadian-driveschool-app.herokuapp.com/admin-dashboard/add-contact', {
+    fetch('/admin-dashboard/add-contact', {
       method: 'post',
       body: JSON.stringify(data),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        "Access-Control-Allow-Origin": "http://canadian-driveschool-app.herokuapp.com/admin-dashboard/add-contact"
+        "Access-Control-Allow-Origin": "/admin-dashboard/add-contact"
       }
     }).then(function (response)
     {

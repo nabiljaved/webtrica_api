@@ -123,13 +123,13 @@
       //  backdrop.style.display = "none";
       // backdrop.style.display = "none";
 
-      fetch('http://canadian-driveschool-app.herokuapp.com/admin-dashboard/add-package', {
+      fetch('/admin-dashboard/admin-dashboard/add-package', {
         method: 'post',
         body: JSON.stringify(data),
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          "Access-Control-Allow-Origin": "http://canadian-driveschool-app.herokuapp.com/admin-dashboard/add-package"
+          "Access-Control-Allow-Origin": "/admin-dashboard/add-package"
         }
       }).then(function (response)
       {
