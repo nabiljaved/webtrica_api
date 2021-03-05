@@ -102,13 +102,13 @@
     {
 
       const data = new Promotion(title, description, expire, city);
-      fetch('http://canadian-driveschool-app.herokuapp.com/admin-dashboard/add-promotion', {
+      fetch('/admin-dashboard/add-promotion', {
         method: 'post',
         body: JSON.stringify(data),
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          "Access-Control-Allow-Origin": "http://canadian-driveschool-app.herokuapp.com/admin-dashboard/add-promotion"
+          "Access-Control-Allow-Origin": "/admin-dashboard/add-promotion"
         }
       }).then(function (response)
       {
