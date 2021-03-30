@@ -8,9 +8,6 @@ const router = Router();
 
 // post router
 
-
-
-
 router.get('/promotions_page', (req, res) => res.render('promotions'));
 router.get('/contacts-page', (req, res) => res.render('contacts-page'));
 router.get('/packages-page', (req, res) => res.render('packages-page', { layout: 'dashboard' }));
@@ -30,6 +27,9 @@ router.get('/driving-school-packages', apiController.getPackages);
 router.get('/driving-school-bookings', apiController.getBookings);
 router.get('/driving-school-jobs', apiController.getJobs);
 router.get('/driving-school-jobs-people-contacted-us', apiController.getPeopleContactedUs);
+
+//list of pictures 
+router.get('/list-movies', apiController.listOfMovies);
 
 
 
